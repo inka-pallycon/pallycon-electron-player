@@ -1,8 +1,9 @@
 [![PallyCon Logo](https://pallycon.com/wp-content/uploads/2015/03/logo_pallycon.png)](https://pallycon.com/)
 
+# pallycon-electron-player
+
 [![PallyCon Electron Player](http://www.pallycon.com/pallycon-test/img/pallycon-electron-screenshot.png)](http://www.pallycon.com/pallycon-test/electron-demo.html)
 
-# pallycon-electron-player
 **Electron-based DASH video player application for PC**
 
 Detailed description about this project will be added later. 
