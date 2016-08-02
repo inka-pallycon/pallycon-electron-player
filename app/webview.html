@@ -1,0 +1,20 @@
+<script language = "javascript">
+
+  var webview_code = "";
+  var temp = location.href.split("?");
+  if (temp.length > 1) {
+    //alert(temp[1]);
+
+    webview_code = "<webview id='dashplayer' src='./viblast-electron.html?" + temp[1] + "' style='display:inline-flex; width:100%; height:100%'' autosize='on' minwidth='576' minheight='432' plugins disablewebsecurity nodeintegration></webview>";
+  }
+  else {
+    //window.alert(location.href);
+    webview_code =  "<webview id='dashplayer' src='./hello.html' style='display:inline-flex; width:100%; height:100%'' autosize='on' minwidth='576' minheight='432' plugins disablewebsecurity nodeintegration></webview>";
+  }
+/*
+  else {
+    webview_code = "<webview id='dashplayer' src='./viblast-electron.html?la_url=https://tokyo.pallycon.com/ri/licenseManager.do&stream_url=https://pallycon.com/pallycon-contents/cosmos-1080p/stream.mpd&custom_data=W8KAJjimCMbmPlROv7bbMkm7fuC8qQ+osxrPGaMUufCgtc4guFSZOjm4hZr/OaxPXFlYVrY1jRvFS6MgJYnImgx3gVzz0f7z593c1+C2lWH4DtEo=&video_width=1020&video_height=480' style='display:inline-flex; width:100%; height:100%'' autosize='on' minwidth='576' minheight='432' plugins disablewebsecurity nodeintegration></webview>";
+  }
+*/
+  document.write(webview_code);
+</script>

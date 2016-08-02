@@ -1,0 +1,7 @@
+{
+  "name": "PallyconElectron",
+  "description": "PallyCon DASH Player Application built on Electron",
+  "version": "0.1.2",
+  "author": "Daniel Kim <daniel@inka.co.kr>",
+  "main": "main.js"
+}

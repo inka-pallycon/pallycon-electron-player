@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Viblast Electron Test</title>
+<meta charset="utf-8">
+<script src="./viblast.js"></script>
+<script type="text/javascript">
+	var la_server = 'https://tokyo.pallycon.com/ri/licenseManager.do';
+	var stream_url = 'https://pallycon.com/pallycon-contents/tears_of_steel_1080p/stream.mpd';
+	var custom_data = 'W8KAJjimCMbmPlROv7bbMkm7fuC8qQ+osxrPGaMUufCgtc4iIoeyjl+W59gwICINswqi+7xMvGitrMYf05N5t+pMfWLnoHeFBzJhiKkRWKABP6O0=';
+
+  function parse_param(param_string, tag_string) {
+    var start_index = param_string.indexOf(tag_string);
+    if (parseInt(start_index) < 0) {
+      //alert("returning null by start: " + start_index);
+      return "";
+    }
+
+    var sub_string = param_string.substring(start_index + tag_string.length, param_string.length);
+    var end_index = sub_string.indexOf('&');
+
+    if (parseInt(end_index) < 0) {
+      //alert(tag_string + sub_string);
+      return sub_string;
+    }
+
+    var found_string = sub_string.substring(0, end_index);
+    //alert(tag_string + found_string);
+
+    return found_string;
+  }
+
+  // parsing url params
+  var params = location.href.split("?");
+  if (params.length > 1) {
+    //alert(param[1]);
+
+    // get la url
+    var parsed = parse_param(params[1], "la_url=");
+    if (parsed.length > 1) {
+      la_server = parsed;
+    }
+
+    // get stream url
+    parsed = parse_param(params[1], "stream_url=");
+    if (parsed.length > 1) {
+      stream_url = parsed;
+    }
+
+    // get custom header
+    parsed = parse_param(params[1], "custom_data=");
+    if (parsed.length > 1) {
+      custom_data = parsed;
+    }
+  }
+
+	function start_viblast() {
+    	viblast('#player').setup({
+			key: 'N8FjNTQ3NDdhZqZhNGI5NWU5ZTI=',
+			stream: stream_url,
+			widevine: {
+				'licensing-server': la_server
+			},
+			xhrBeforeSend: function(ev) {
+      	// filter out non-drm requests
+      	// ev.url.indexOf("//tokyo.pallycon.com/ri/licenseManager.do") < 0 is another possible check
+      	if (ev.method !== "POST") return;
+
+				ev.xhr.setRequestHeader('pallycon-customdata', custom_data);
+
+				//console.log('Sending a ', ev.method, 'request to ', ev.url, 'by Viblast instance', ev.target);
+   			ev.xhr.addEventListener('load', function() {
+       			var responseText = String.fromCharCode.apply(null, new Uint8Array(ev.xhr.response)); // assumes utf8
+       			if (responseText.indexOf('errorCode') > 0) {
+       				// this alert should be properly parsed and displayed for commercial use
+         				alert('No Rights. Server Response ' + responseText);
+       			}
+       		});
+			},
+			autoplay: true
+		});
+    	document.getElementById('player').viblast.abr
+	}
+
+	function stop_viblast() {
+    	viblast('#player').stop();
+	}
+</script>
+<style type="text/css">
+.layer{
+  position:absolute;
+  top:0;right:0;bottom:0;left:0;
+  display:-webkit-box;
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:-webkit-flex;
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+  -webkit-align-items:center;
+  -webkit-justify-content:center;
+
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+  -ms-box-pack:center;
+  -ms-box-align:center;
+
+  overflow: hidden;
+}
+.layer .content{background:#0000}
+
+</style>
+
+</head>
+
+<body style="padding:0px;margin:0px;width:100%;height:100%;" onload="start_viblast()">
+<div class="layer">
+  <span class="content">
+	<video id="player" controls width="100%" height="100%"></video>
+  </span>
+</div>
+</body>
+</html>
