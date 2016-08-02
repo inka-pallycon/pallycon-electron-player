@@ -4,9 +4,10 @@
 
 [![PallyCon Electron Player](http://www.pallycon.com/pallycon-test/img/pallycon-electron-screenshot.png)](http://www.pallycon.com/pallycon-test/electron-demo.html)
 
-**Electron-based DASH video player application for PC**
+**[Electron-based](http://electron.atom.io) DASH video player application for PC**
 
 Detailed description about this project will be added later. 
+Please go to [demo site](http://pallycon.com/pallycon-test/electron-demo.html) to test installation and demo playback.
 
 A basic Electron application needs just these files:
 
