@@ -1,8 +1,8 @@
-[![PallyCon Logo](https://pallycon.com/wp-content/uploads/2015/03/logo_pallycon.png)](https://pallycon.com/)
+[![PallyCon Logo](https://pallycon.com/sample/images/logo.png)](https://pallycon.com/)
 
 # pallycon-electron-player
 
-[![PallyCon Electron Player](http://www.pallycon.com/pallycon-test/img/pallycon-electron-screenshot.png)](http://www.pallycon.com/pallycon-test/electron-demo.html)
+[![PallyCon Electron Player](https://pallycon.com/sample/images/pallycon-electron-screenshot.png)](http://www.pallycon.com/pallycon-test/electron-demo.html)
 
 **[Electron-based](http://electron.atom.io) DASH video player application for PC**
 
